@@ -1,0 +1,14 @@
+---
+- hosts: webserver
+  remote_user: root
+  become: yes
+  tasks:
+   - name: install httpd
+     yum: name=httpd state=installed
+   - name: creates  index.html file
+     copy: src=index.html dest=/var/www/html
+   - name: restart httpd
+     service: name=httpd state=restarted
+     register: output
+   - debug: 
+      msg: "{{output}}" 

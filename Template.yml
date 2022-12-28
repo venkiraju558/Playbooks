@@ -1,0 +1,7 @@
+---
+- hosts: webserver
+  remote_user: root
+  become: yes
+  tasks:
+   - name: copy xyz file
+     template: src=xyz.j2 dest=/root/xyz 
